@@ -1,1 +1,22 @@
+   <!--Table-->
+   
+    <table id="outerTable" style="width: 700px; height: 900px; position: absolute; left: 650px; top: 20px;">
+        <tr>
+            <td style="height: 100px; background-color: aliceblue;" colspan="2">Title</td>
+        </tr>
+        <tr>
+            <td style="position: relative; overflow: auto;">
+                <div  style=" position: absolute; top: 0; left: 0;" id="container"></div>
+            </td>
 
+
+            <td style="width: 100px;"><button onclick="addcol()">ADD COL</button></td>
+        </tr>
+        <tr>
+            <td style="height: 100px;" colspan="2"><button onclick="addrow()">ADD ROW</button></td>
+        </tr>
+        <tr>
+           <td style="height: 20px;"> <button onclick="saveTable()">save</button> </td>
+           <td> <button onclick="loadTable()">Load</button></td>
+        </tr>
+    </table>
