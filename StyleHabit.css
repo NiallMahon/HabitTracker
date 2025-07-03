@@ -1,3 +1,51 @@
 table {
     border: solid;
+    background-color: aliceblue;
+}
+td{
+    border: solid;
+    padding: 0%;
+}
+button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+.cell{
+    width: 80px;
+    background-color: aliceblue;
+
+}
+.goal{
+    height: 80px;
+    width: 80px;
+    text-align: center;
+}
+.clics {
+    width: 80px;
+}
+body {
+    background-image: url(dojo.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+td{
+ text-align: center;
+}
+html {
+    width: 100%;
+}
+.wrapper{
+display: flex;
+  justify-content: center; 
+  align-items: center;     
+  height: 100vh;           
+  width: 100vw;  
+}
+.outbtn{
+    width: 50px;
+    border-radius: 15px;
 }
