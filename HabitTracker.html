@@ -1,188 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="StyleHabit.css">
-</head>
-<body onload="generate()">
-    <!--Table-->
-   
-    <table id="outerTable" style="width: 700px; height: 900px; position: absolute; left: 650px; top: 20px;">
-        <tr>
-            <td style="height: 100px; background-color: aliceblue;" colspan="2">Title</td>
-        </tr>
-        <tr>
-            <td style="position: relative; overflow: auto;">
-                <div  style=" position: absolute; top: 0; left: 0;" id="container"></div>
-            </td>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="StyleHabit.css">
+    </head>
+    <body onload="generate()">
+        
+        <!--Table-->
+        <button onclick="reset()" class="outbtn">Reset</button>
+    <div class="wrapper">
+        <table id="outerTable" style="width: 78vh; height: 97vh; ">
+            <tr>
+                <td style="height: 100px; background-color: aliceblue;" colspan="2">Title</td>
+            </tr>
+            <tr>
+                <td style="position: relative; overflow: auto;">
+                    <div  style=" position: absolute; top: 0; left: 0;" id="container"></div>
+                </td>
 
 
-            <td style="width: 100px;"><button onclick="addcol()">ADD COL</button></td>
-        </tr>
-        <tr>
-            <td style="height: 100px;" colspan="2"><button onclick="addrow()">ADD ROW</button></td>
-        </tr>
-        <tr>
-           <td style="height: 20px;"> <button onclick="saveTable()">save</button> </td>
-           <td> <button onclick="loadTable()">Load</button></td>
-        </tr>
-    </table>
-    
+                <td style="width: 100px;"><button onclick="addcol()">ADD COL</button></td>
+            </tr>
+            <tr>
+                <td style="height: 100px;" colspan="2"><button onclick="addrow()">ADD ROW</button></td>
+            </tr>
+            <tr>
+            <td style="height: 20px;"> <button onclick="saveTable()">save</button> </td>
+            <td> <button onclick="loadTable()">Load</button></td>
+            </tr>
+        </table>
+        </div>
+        
 
 
-    <script>
-        document.addEventListener('click', function(e){
-            if (e.target.classList.contains('clic') ){
-                change(e.target);
-            }
-        })
-
-        function change(button){
-            var colours = ['green', 'red', 'black', 'white'];
-            var colour = button.style.backgroundColor;
-            var pos = colours.indexOf(colour);
-            const next = (pos + 1)%colours.length;
-            button.style.backgroundColor = colours[next];
-           
-
-        }
-
-        function generate() {
-          var container = document.getElementById("container");
-          container.innerHTML =""
-
-          var table = document.createElement("table");
-          
-
-          var row = table.insertRow(0);
-          var cell = row.insertCell(0);
-          cell.innerHTML = '<input type="text" style="border: none;" class="cell"; placeholder=" ">';
-
-          container.appendChild(table);
-          table.id = "tableid";
-        }
-
-
-        var count = 1;
-        function addrow() {
-            var table = document.getElementById("tableid");
-            var rowCount = table.rows.length;
-            var colCount = table.rows[0].cells.length;
-              var newRow = table.insertRow(rowCount);
-            for (var i = 0; i<colCount; i++) {
-               var cell = newRow.insertCell(i);
-                if (i === 0) {
-                    cell.innerHTML = count;
-                    cell.style.height="80px";
-                    count++;
-                }
-                else {
-                    cell.innerHTML ='<button class="clic" style="height: 90px;"></button>';
-                }
-            }
-        }
-
-        function addcol(){
-            var table = document.getElementById("tableid");
-            var rowCount = table.rows.length;
-            var colCount = table.rows[0].cells.length;
-            
-            for (var i = 0; i < rowCount; i++){
-                var cell = table.rows[i].insertCell(table.rows[i].cells.length);
-                if (i ===0){
-                    cell.innerHTML ='<input type="text" placeholder="goal">';
-                }
-                else {
-                    cell.innerHTML = '<button  class="clic"  style="height: 80px;"></button>';
-                }
-            }
-        }
-
-        function saveTable(){
-            const table = document.getElementById("tableid");
-            const data = [];
-
-            for (var i=0; i<table.rows.length; i++){
-                    const row = table.rows[i];
-                    const rowData = [];
-                    for (var j =0; j < row.cells.length; j++){
-                        const cell = row.cells[j]; 
-                        const input = cell.querySelector("input");
-                        const button = cell.querySelector("button");    
-
-                        if (input){
-                            rowData.push({
-                                type: 'input',
-                                value: input.value,
-                                placeholder: input.placeholder || ''
-                            });
-                        }
-                        else if(button){
-                            rowData.push({type: 'button', color: button.style.backgroundColor});
-                        }
-                        else {
-                            rowData.push({type: 'text', value: cell.innerText});
-                        }
-                    }
-                    data.push(rowData);
-            }
-            const savedObject = {
-                table: data,
-                count: count
-            };
-
-            localStorage.setItem("SaveTab", JSON.stringify(savedObject));
-        }
-
-        function loadTable(){
-            const saved = localStorage.getItem("SaveTab");
-            if (!saved) {
-                return;
-            }
-
-            const savedObject = JSON.parse(saved);
-            const data = savedObject.table;
-            count = savedObject.count;
-            var container = document.getElementById("container");
-          container.innerHTML =""
-
-          var table = document.createElement("table");
-          table.id = "tableid";
-          container.appendChild(table); 
-
-          for (var i =0; i < data.length; i++){
-            const row = table.insertRow();
-            const rowData = data[i];    
-            for (var j =0; j < rowData.length; j++){
-                const cellData = rowData[j];
-                const cell = row.insertCell();
-
-                if (cellData.type === 'input'){
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.value = cellData.value;
-                    input.placeholder = cellData.placeholder || '';
-                    input.style.border = 'none';
-                    cell.appendChild(input);
-                }
-                else if (cellData.type === 'button'){
-                    const button = document.createElement('button');
-                    button.className = 'clic';
-                    button.style.height = '80px';
-                    button.style.backgroundColor = cellData.color || ' ';
-                    cell.appendChild(button);
-
-                }
-                else if (cellData.type === 'text'){
-                    cell.innerText = cellData.value;
-                  
-                }
-            }
-          }
-          
-        }
-    </script>   
-</body>
-</html>
+        <script src="habitTacker-index.js"></script>   
+    </body>
+    </html>
