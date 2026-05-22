@@ -5,108 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HabitTracker</title>
     <link href="styles.css" rel="stylesheet" >
+    <script src="habitTracker.js" defer></script>
 </head>
 <body>
     <header>
         Habit Tracker
     </header>
 
+
 <div class="aside-table" >
-    <aside style="width: 20%;"> sidebar </aside>
     
-        <div class="table-wrap">
-    <table class="fixed-grid">
-        <tbody>
-        <tr>
-            <td>One</td>
-            <td>Two</td>
-            <td>Three</td>
-            <td>Four</td>
-            <td>Five</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        <tr>
-            <td>Six</td>
-            <td>Seven</td>
-            <td>Eight</td>
-            <td>Nine</td>
-            <td>Ten</td>
-        </tr>
-        
-        </tbody>
-    </table>
+    <div class="table-wrap">
+        <table id="table" class="fixed-grid"> </table>
     </div>
+
+    <aside style="width: 20%;"><button id="addRow" onclick="createCol()">Add Column</button> </aside>
+
 </div>
-        
-    <footer>Contact details</footer>
+    <aside id="button-holder"><button id="addRow" onclick="createRow()">Add Row</button></aside>
+    <footer>feet</footer>
 </body>
+
+
+
+
 </html>

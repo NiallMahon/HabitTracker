@@ -16,21 +16,46 @@ aside {
     flex: 1;
 }
 
+*{
+    text-align: center;
+}
+
+#addRow{
+    width: 100%;
+    height: 100%;
+}
+
 .table-wrap {
   width: 100%;
   height:75vh;
   overflow: auto; /* scroll when content exceeds width/height */
   border: 1px solid #ccc;
 }
-
-
+button{
+    width: 100%;
+    height: 120px;
+    border: none;
+    display: block;
+}
+#button-holder {
+    height: 80px;
+    
+}
 tr{
     min-height: 120px;
     height: 120px;
 }
 
+input{
+    width: 100%;
+    width: 120px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-align: center;
+}
  td {
-  width: 20%;
+  padding: 0%;
   min-width: 120px;
   border: 1px solid #999;
   box-sizing: border-box;
