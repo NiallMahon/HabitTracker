@@ -1,10 +1,12 @@
 const table = document.getElementById("table");
+let colourArray = ["green", "red","black", "#f0f0f0"]
 function createTable() {
 
+    //create cell
     const row = table.insertRow();
     const cell = row.insertCell();
     
-
+    //insert text box
     const input = document.createElement("input");
     input.type = "text";
     input.value = "Title";
@@ -16,24 +18,36 @@ function createTable() {
 
 function createRow() {
 
-    // If table is empty, create first cell
+    // If table is empty, create first cells
     if (table.rows.length === 0) {
         createTable();
         return;
     }
 
+
     const colCount = table.rows[0].cells.length;
     const row = table.insertRow();
 
        
+    //insert cell with appropiate number
     row.insertCell().textContent = table.rows.length - 1;
     for (let i = 1; i < colCount; i++) {
         
         const cell = row.insertCell();
         const button = document.createElement("button");
-        
+        button.style.borderRadius = "3%"
+
+           // Add color cycling functionality
+        let colorIndex = 0;
+        button.addEventListener("click", function() {
+            button.style.backgroundColor = colourArray[colorIndex];
+            colorIndex = (colorIndex + 1) % colourArray.length;
+        });
+
         cell.appendChild(button)
     }
+
+    
 }
 
 function createCol() {
@@ -54,6 +68,7 @@ function createCol() {
     for (let i = 1; i < rowCount; i++) {
         const cell = table.rows[i].insertCell();
         const button = document.createElement("button");
+        button.style.borderRadius = "3%"
         
         cell.appendChild(button)
     }
